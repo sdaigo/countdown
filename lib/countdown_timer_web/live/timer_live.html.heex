@@ -1,0 +1,20 @@
+<form phx-submit="start">
+  <label for="minutes">minutes:</label>
+  <input id="minutes" type="number" name="minutes" min="1" placeholder="min" />
+  <button type="submit">Start</button>
+</form>
+
+<div id="timer">
+  <h2><%= format_time(@time_left) %></h2>
+  <%= if @running and not @paused do %>
+    <p>running...</p>
+    <button phx-click="pause">Pause</button>
+  <% end %>
+
+  <%= if @paused do %>
+    <p>Stopped</p>
+    <button phx-click="start" phx-value-minutes="">Restart</button>
+  <% end %>
+
+  <button phx-click="reset">Reset</button>
+</div>
